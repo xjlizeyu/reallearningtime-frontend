@@ -12,6 +12,9 @@ Vue.use(vuetify);
 Vue.prototype.$moment = moment; //赋值使用
 moment.locale("zh-cn"); //国际化，中文
 
+//引入全局css
+import "./assets/scss/style.scss";
+
 new Vue({
   router,
   store,
