@@ -1,6 +1,8 @@
 <template>
   <div>
-    <div class="containBox" ref="head" id="head"></div>
+    <div class="containBox" ref="head" id="head">
+      <timer></timer>
+    </div>
     <div class="containBox" ref="statics" id="statics"></div>
     <div class="containBox" ref="footer" id="footer">
       <div>
@@ -15,7 +17,11 @@
   </div>
 </template>
 <script>
+import timer from "../components/main/timer";
 export default {
+  components: {
+    timer
+  },
   data() {
     return {
       currPanel: 0,
@@ -25,6 +31,7 @@ export default {
   },
   methods: {
     //替换鼠标滚轮事件，实现页面整体下滑
+    //TODO:解决多次快速滑动滚轮会多次触发事件
     handleScroll(e) {
       e.preventDefault();
       console.log(e);
@@ -96,7 +103,7 @@ export default {
 }
 
 #head {
-  background-color: antiquewhite;
+  background-color: yellowgreen;
 }
 #statics {
   background-color: aquamarine;
