@@ -3,7 +3,11 @@
     <div class="containBox" ref="head" id="head">
       <timer></timer>
     </div>
-    <div class="containBox" ref="statics" id="statics"></div>
+    <div class="containBox" ref="statics" id="statics">
+      <div>
+        <chart></chart>
+      </div>
+    </div>
     <div class="containBox" ref="footer" id="footer">
       <div>
         <br />
@@ -18,9 +22,11 @@
 </template>
 <script>
 import timer from "../components/main/timer";
+import chart from "../components/main/chart";
 export default {
   components: {
-    timer
+    timer,
+    chart
   },
   data() {
     return {
