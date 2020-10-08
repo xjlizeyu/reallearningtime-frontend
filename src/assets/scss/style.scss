@@ -1,3 +1,58 @@
-html{
+$main-color:white;
+$font-color:black;
+$background-color:#f4f5f7;
+
+html {
     width: 100%;
+}
+.round {
+    border-radius: 0.3rem !important;
+
+}
+
+.shadow {
+    box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .15) !important;
+}
+@mixin log {
+    background: {
+        image: url("~@/assets/sign-bg.jpg");
+        size: 100% 100%;
+        repeat: no-repeat;
+        size: cover;
+        position: center top;
+    }
+
+    ;
+}
+
+@mixin sign {
+    background: {
+        image: url("/assets/sign-bg.jpg");
+        size: 100% 100%;
+        repeat: no-repeat;
+        size: cover;
+        position: center top;
+    }
+
+    ;
+}
+
+@mixin container {
+    display: flex;
+    height: 100vh;
+    width: 100%;
+}
+
+@mixin inputBox {
+    margin: 0 auto;
+    align-self: center;
+
+    background: {
+        color: $background-color;
+    }
+
+    padding: 2.5% ;
+    @extend .round;
+    @extend .shadow;
+
 }

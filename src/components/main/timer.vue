@@ -10,12 +10,16 @@
 </template>
 
 <script>
+import { getTime, startTiming, stopTiming } from "../../apis/api";
+import { secondsToTime } from "../../utils/timeConvertUtil";
 export default {
   data() {
     return {
-      timeHour: 1,
-      timeMinute: 1,
-      timeSecond: 1,
+      time: {
+        timeHour: 1,
+        timeMinute: 1,
+        timeSecond: 1
+      },
       isTiming: false,
       currBackgroundColor: "white",
       currText: "开始计时"
@@ -26,8 +30,22 @@ export default {
       if (this.isTiming) {
         this.currBackgroundColor = "white";
         this.currText = "开始计时";
+        stopTiming.then(res => {
+          if (res.data.isSuccess) {
+            alert("成功停止计时");
+          } else {
+            alert(res.data.errorMessage);
+          }
+        });
       } else {
         this.currBackgroundColor = "blue";
+        startTiming.then(res => {
+          if (res.data.isSuccess) {
+            alert("成功开始计时");
+          } else {
+            alert(res.data.errorMessage);
+          }
+        });
         this.currText = "停止计时";
       }
       this.isTiming = !this.isTiming;
@@ -35,6 +53,9 @@ export default {
   },
   mounted() {
     //获取今天已学习时间
+    getTime().then(res => {
+      this.time = secondsToTime(res.data);
+    });
   }
 };
 </script>

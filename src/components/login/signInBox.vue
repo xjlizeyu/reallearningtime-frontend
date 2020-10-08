@@ -30,7 +30,7 @@
       Reset Form
     </v-btn>
 
-    <v-btn color="success" @click="login">
+    <v-btn color="warning" @click="login">
       login
     </v-btn>
   </v-form></template
@@ -45,10 +45,10 @@ export default {
       v => !!v || "Name is required",
       v => (v && v.length <= 10) || "Name must be less than 10 characters"
     ],
-    password: "",
+    email: "",
     passwordRules: [
-      v => !!v || "Password is required",
-      v => (v && v.length >= 8) || "Password must be longer than 10 characters"
+      v => !!v || "E-mail is required",
+      v => /.+@.+\..+/.test(v) || "E-mail must be valid"
     ],
     checkbox: false
   }),
@@ -59,10 +59,9 @@ export default {
     },
     reset() {
       this.$refs.form.reset();
-    },
-    login() {}
+    }
   }
 };
 </script>
 
-<style lang="scss"></style>
+<style></style>
