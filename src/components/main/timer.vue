@@ -42,6 +42,9 @@ export default {
         startTiming.then(res => {
           if (res.data.isSuccess) {
             alert("成功开始计时");
+            getTime().then(res => {
+              this.time = secondsToTime(res.data);
+            });
           } else {
             alert(res.data.errorMessage);
           }

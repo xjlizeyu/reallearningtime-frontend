@@ -37,6 +37,7 @@
 >
 
 <script>
+import { logIn } from "../../apis/api";
 export default {
   data: () => ({
     valid: true,
@@ -60,7 +61,19 @@ export default {
     reset() {
       this.$refs.form.reset();
     },
-    login() {}
+    login() {
+      logIn(this.name, this.password).next(res => {
+        if (res.data.isSuccess) {
+          alert("登陆成功");
+          this.$store.commit("login", {
+            userName: this.name
+          });
+          this.$router.push("/");
+        } else {
+          alert(res.data.errorMessage);
+        }
+      });
+    }
   }
 };
 </script>

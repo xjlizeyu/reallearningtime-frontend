@@ -1,21 +1,31 @@
-import Vue from "vue";
-import Vuex from "vuex";
+"use strict";
 
-Vue.use(Vuex);
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = void 0;
 
-export default new Vuex.Store({
+var _vue = _interopRequireDefault(require("vue"));
+
+var _vuex = _interopRequireDefault(require("vuex"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+_vue["default"].use(_vuex["default"]);
+
+var _default = new _vuex["default"].Store({
   state: {
     isLogin: JSON.parse(sessionStorage.getItem("isLogin")) || false,
     user: JSON.parse(sessionStorage.getItem("user")) || {}
   },
   mutations: {
-    login: (state, user) => {
+    login: function login(state, user) {
       state.user = user;
       state.isLogin = true;
       sessionStorage.setItem("user", JSON.stringify(user));
       sessionStorage.setItem("isLogin", true);
     },
-    exit: state => {
+    exit: function exit(state) {
       state.user = {};
       state.isLogin = false;
       window.localStorage.setItem("user", null);
@@ -25,11 +35,13 @@ export default new Vuex.Store({
   actions: {},
   modules: {},
   getters: {
-    getIsLogIn: state => {
+    getIsLogIn: function getIsLogIn(state) {
       return state.isLogin;
     },
-    getUser: state => {
+    getUser: function getUser(state) {
       return state.user;
     }
   }
 });
+
+exports["default"] = _default;

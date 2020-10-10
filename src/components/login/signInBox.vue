@@ -1,5 +1,6 @@
 <template>
   <v-form ref="form" v-model="valid" lazy-validation>
+    <h2>注册</h2>
     <v-text-field
       v-model="name"
       :counter="10"
