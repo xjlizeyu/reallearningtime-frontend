@@ -9,6 +9,7 @@ const routes = [
   {
     path: "/",
     name: "Home",
+    meta: { requireAuth: true },
     component: Home
   },
   {
@@ -24,6 +25,7 @@ const routes = [
 ];
 
 const router = new VueRouter({
+  mode: "hash",
   routes
 });
 

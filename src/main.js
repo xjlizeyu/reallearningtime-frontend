@@ -25,3 +25,20 @@ new Vue({
   vuetify,
   render: h => h(App)
 }).$mount("#app");
+
+// 检验是否在未登陆的情况下访问需要验证的页面
+// 需要在router里添加 meta: { requireAuth: true }
+router.beforeEach((to, from, next) => {
+  if (to.matched.some(m => m.meta.requireAuth)) {
+    // 对路由进行验证
+    if (store.state.isLogin) {
+      // 已经登陆
+      next(); // 正常跳转到你设置好的页面
+    } else {
+      // 未登录则跳转到登陆界面
+      next({ path: "/login" });
+    }
+  } else {
+    next();
+  }
+});
