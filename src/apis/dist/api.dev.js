@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.newPlan = exports.deletePlan = exports.stopTiming = exports.startTiming = exports.getTime = exports.signIn = exports.logIn = void 0;
+exports.fetchStatistic = exports.newPlan = exports.deletePlan = exports.stopTiming = exports.startTiming = exports.getTime = exports.signIn = exports.logIn = void 0;
 
 var _axios = _interopRequireDefault(require("axios"));
 
@@ -66,11 +66,20 @@ var deletePlan = function deletePlan() {
 exports.deletePlan = deletePlan;
 
 var newPlan = function newPlan(days, duration) {
-  return _axios["default"].post("/plan/new".Qs.stringify({
+  return _axios["default"].post("/plan/new", _qs["default"].stringify({
     days: days,
     duration: duration
   }));
 }; //-----------------------------------------
+//--------------------------------------------
+//统计相关api
 
 
 exports.newPlan = newPlan;
+
+var fetchStatistic = function fetchStatistic() {
+  return _axios["default"].post("/timing/statistic");
+}; //--------------------------------------------
+
+
+exports.fetchStatistic = fetchStatistic;

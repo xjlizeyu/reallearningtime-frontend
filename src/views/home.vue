@@ -4,9 +4,7 @@
       <timer></timer>
     </div>
     <div class="containBox" ref="statics" id="statics">
-      <div>
-        <chart></chart>
-      </div>
+      <chart></chart>
     </div>
     <div class="containBox" ref="footer" id="footer">
       <div>
@@ -105,6 +103,7 @@ export default {
 
 <style lang="scss">
 .containBox {
+  position: relative;
   width: 100%;
 }
 

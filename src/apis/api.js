@@ -38,6 +38,12 @@ export const deletePlan = () => {
 };
 
 export const newPlan = (days, duration) => {
-  return axios.post("/plan/new".Qs.stringify({ days, duration }));
+  return axios.post("/plan/new", Qs.stringify({ days, duration }));
 };
 //-----------------------------------------
+//--------------------------------------------
+//统计相关api
+export const fetchStatistic = () => {
+  return axios.post("/timing/statistic");
+};
+//--------------------------------------------

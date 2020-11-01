@@ -1,4 +1,4 @@
-/<template>
+<template>
   <div id="timerContainer">
     <div id="timerText">{{ timeHour }}:{{ timeMinute }}:{{ timeSecond }}</div>
     <div id="shade" @click="changeMode()">
