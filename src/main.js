@@ -10,9 +10,9 @@ Vue.config.productionTip = false;
 import moment from "moment"; //导入文件
 Vue.prototype.$moment = moment; //赋值使用
 moment.locale("zh-cn"); //国际化，中文
-import echarts from "echarts";
+//import echarts from "echarts";
 
-Vue.use(echarts);
+//Vue.use(echarts);
 
 //引入全局css
 import "./assets/scss/style.scss";
@@ -26,6 +26,7 @@ new Vue({
   render: h => h(App)
 }).$mount("#app");
 
+//TODO：在第一次访问时可能不生效
 // 检验是否在未登陆的情况下访问需要验证的页面
 // 需要在router里添加 meta: { requireAuth: true }
 router.beforeEach((to, from, next) => {

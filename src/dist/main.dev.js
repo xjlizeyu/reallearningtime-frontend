@@ -14,8 +14,6 @@ var _vueAxios = _interopRequireDefault(require("vue-axios"));
 
 var _moment = _interopRequireDefault(require("moment"));
 
-var _echarts = _interopRequireDefault(require("echarts"));
-
 require("./assets/scss/style.scss");
 
 var _vuetify = _interopRequireDefault(require("./plugins/vuetify"));
@@ -29,9 +27,9 @@ _vue["default"].config.productionTip = false;
 _vue["default"].prototype.$moment = _moment["default"]; //赋值使用
 
 _moment["default"].locale("zh-cn"); //国际化，中文
-
-
-_vue["default"].use(_echarts["default"]); //引入全局css
+//import echarts from "echarts";
+//Vue.use(echarts);
+//引入全局css
 
 
 new _vue["default"]({
@@ -41,7 +39,8 @@ new _vue["default"]({
   render: function render(h) {
     return h(_App["default"]);
   }
-}).$mount("#app"); // 检验是否在未登陆的情况下访问需要验证的页面
+}).$mount("#app"); //TODO：在第一次访问时可能不生效
+// 检验是否在未登陆的情况下访问需要验证的页面
 // 需要在router里添加 meta: { requireAuth: true }
 
 _router["default"].beforeEach(function (to, from, next) {

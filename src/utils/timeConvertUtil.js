@@ -4,11 +4,9 @@ export const secondsToTime = seconds => {
     minutes: 0,
     seconds: 0
   };
-  data.hours = seconds / 3600;
-  data.minutes = (seconds % 3600) % 60;
+  data.hours = parseInt(seconds / 3600);
+  data.minutes = parseInt((seconds % 3600) / 60);
   data.seconds = seconds % 60;
 
   return data;
 };
-
-export const timeToSeconds = () => {};

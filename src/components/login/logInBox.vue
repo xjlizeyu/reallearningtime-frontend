@@ -49,7 +49,7 @@ export default {
     password: "",
     passwordRules: [
       v => !!v || "Password is required",
-      v => (v && v.length >= 8) || "Password must be longer than 10 characters"
+      v => (v && v.length >= 8) || "Password must be longer than 8 characters"
     ],
     checkbox: false
   }),
@@ -62,13 +62,13 @@ export default {
       this.$refs.form.reset();
     },
     login() {
-      logIn(this.name, this.password).next(res => {
-        if (res.data.isSuccess) {
+      logIn(this.name, this.password).then(res => {
+        if (res.data.success) {
           alert("登陆成功");
           this.$store.commit("login", {
             userName: this.name
           });
-          this.$router.push("/");
+          this.$router.push("/home");
         } else {
           alert(res.data.errorMessage);
         }

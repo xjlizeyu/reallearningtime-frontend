@@ -15,36 +15,51 @@ import { secondsToTime } from "../../utils/timeConvertUtil";
 export default {
   data() {
     return {
-      time: {
-        timeHour: 1,
-        timeMinute: 1,
-        timeSecond: 1
-      },
+      timer: null,
+      timeHour: 0,
+      timeMinute: 0,
+      timeSecond: 0,
+
       isTiming: false,
       currBackgroundColor: "white",
       currText: "开始计时"
     };
   },
   methods: {
+    setTime() {
+      if (this.timeSecond == 59) {
+        this.timeSecond = 0;
+        if (this.timeMinute == 59) {
+          this.timeMinute = 0;
+          this.timeHour++;
+        } else {
+          this.timeMinute++;
+        }
+      } else {
+        this.timeSecond++;
+      }
+    },
     changeMode() {
       if (this.isTiming) {
-        this.currBackgroundColor = "white";
-        this.currText = "开始计时";
-        stopTiming.then(res => {
-          if (res.data.isSuccess) {
+        //停止计时
+        stopTiming().then(res => {
+          if (res.data.success) {
+            clearInterval(this.timer);
             alert("成功停止计时");
+            this.currBackgroundColor = "white";
+            this.currText = "开始计时";
           } else {
             alert(res.data.errorMessage);
           }
         });
       } else {
-        this.currBackgroundColor = "blue";
-        startTiming.then(res => {
-          if (res.data.isSuccess) {
+        //开始计时
+        startTiming().then(res => {
+          if (res.data.success) {
+            this.currBackgroundColor = "blue";
+            this.isTiming = true;
+            this.timer = setInterval(this.setTime, 1000);
             alert("成功开始计时");
-            getTime().then(res => {
-              this.time = secondsToTime(res.data);
-            });
           } else {
             alert(res.data.errorMessage);
           }
@@ -57,7 +72,11 @@ export default {
   mounted() {
     //获取今天已学习时间
     getTime().then(res => {
-      this.time = secondsToTime(res.data);
+      var t = secondsToTime(res.data);
+      console.log(t);
+      this.timeHour = t.hours;
+      this.timeMinute = t.minutes;
+      this.timeSecond = t.seconds;
     });
   }
 };
@@ -66,6 +85,7 @@ export default {
 <style lang="scss">
 #timerContainer {
   position: absolute;
+  border-radius: 50%;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -75,7 +95,8 @@ export default {
     cursor: pointer;
   }
   #shade {
-    width: 200px;
+    width: $timer-size;
+    height: $timer-size;
     text-align: center;
     overflow: hidden;
     p {
@@ -87,7 +108,7 @@ export default {
       line-height: 100px;
       word-break: keep-all;
     }
-    height: 200px;
+
     opacity: 0;
     position: absolute;
     border: {
@@ -116,8 +137,8 @@ export default {
 
   #timerCircle {
     position: relative;
-    width: 220px;
-    height: 220px;
+    width: $timerCircle-size;
+    height: $timerCircle-size;
     &:hover {
       cursor: pointer;
     }
@@ -134,8 +155,8 @@ export default {
         style: solid;
       }
 
-      width: 200px;
-      height: 200px;
+      width: $timer-size;
+      height: $timer-size;
       background: {
         color: lightgray;
       }
@@ -146,8 +167,8 @@ export default {
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%) rotate(0);
-      width: 210px;
-      height: 210px;
+      width: $timerCircle-size;
+      height: $timerCircle-size;
       border : {
         radius: 50%;
         bottom: 105px solid white;
@@ -175,8 +196,8 @@ export default {
     height: 0px;
   }
   100% {
-    width: 200px;
-    height: 200px;
+    width: $timer-size;
+    height: $timer-size;
   }
 }
 </style>

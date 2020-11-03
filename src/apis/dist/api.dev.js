@@ -11,7 +11,7 @@ var _qs = _interopRequireDefault(require("qs"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
-_axios["default"].defaults.baseURL = "localhost:8081";
+_axios["default"].defaults.baseURL = "http://localhost:8081";
 _axios["default"].defaults.withCredentials = true;
 _axios["default"].defaults.headers["Content-Type"] = "application/x-www-form-urlencoded"; //声明通过axios与后端通信的api
 //-----------------------------------------

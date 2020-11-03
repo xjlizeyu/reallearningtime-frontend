@@ -3,6 +3,7 @@
 </template>
 
 <script>
+import echarts from "echarts";
 import { fetchStatistic } from "../../apis/api";
 export default {
   data() {
@@ -35,8 +36,8 @@ export default {
     setChart() {
       this.option.series.data = this.times;
       this.option.xAsix.data = this.dates;
-      this.chart = this.$refs.chart;
-      this.chart.setChart(this.option);
+      this.chart = echarts.init(this.$refs.chart);
+      this.chart.setOption(this.option);
     },
     getBeforeDate(number) {
       const num = number;
@@ -65,18 +66,19 @@ export default {
   },
   mounted() {
     fetchStatistic().then(res => {
+      console.log(res.data);
       if (res.data.length == 7) {
         this.times = res.data;
       } else {
         let i;
-        for (i = 0; i < 7 - res.data.length(); i++) {
-          this.times[i] = 0;
+        for (i = 0; i < 7 - res.data.length; i++) {
+          this.times.push(0);
         }
         this.times.push(...res.data);
       }
     });
-    let j = -1;
-    for (; j > -7; j--) {
+    let j = -6;
+    for (; j < 0; j++) {
       this.dates.push(this.getBeforeDate(j));
     }
     this.dates.push("今天");
