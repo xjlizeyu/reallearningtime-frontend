@@ -1,5 +1,5 @@
 <template>
-  <div ref="chart"></div>
+  <div ref="chart" style="width: 600px;height:400px;"></div>
 </template>
 
 <script>
@@ -17,15 +17,15 @@ export default {
         },
         tooltip: {},
         legend: { data: ["学习时间"] },
-        xAsix: {
-          data: []
+        xAxis: {
+          data: ["test", "test"]
         },
         yAxis: {},
         series: [
           {
             name: "学习时间",
             type: "bar",
-            data: []
+            data: [10, 10, 10, 10, 10, 10, 10]
           }
         ],
         color: ["#66FF99"]
@@ -34,9 +34,9 @@ export default {
   },
   methods: {
     setChart() {
-      this.option.series.data = this.times;
-      this.option.xAsix.data = this.dates;
-      this.chart = echarts.init(this.$refs.chart);
+      this.option.series[0].data = this.times;
+      this.option.xAxis.data = this.dates;
+
       this.chart.setOption(this.option);
     },
     getBeforeDate(number) {
@@ -65,8 +65,8 @@ export default {
     }
   },
   mounted() {
+    this.chart = echarts.init(this.$refs.chart);
     fetchStatistic().then(res => {
-      console.log(res.data);
       if (res.data.length == 7) {
         this.times = res.data;
       } else {
@@ -76,13 +76,13 @@ export default {
         }
         this.times.push(...res.data);
       }
+      let j = -6;
+      for (; j < 0; j++) {
+        this.dates.push(this.getBeforeDate(j));
+      }
+      this.dates.push("今天");
+      this.setChart();
     });
-    let j = -6;
-    for (; j < 0; j++) {
-      this.dates.push(this.getBeforeDate(j));
-    }
-    this.dates.push("今天");
-    this.setChart();
   }
 };
 </script>

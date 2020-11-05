@@ -111,7 +111,7 @@ export default {
   background-color: yellowgreen;
 }
 #statics {
-  background-color: aquamarine;
+  background-color: rgba($color: #ffffff, $alpha: 0);
 }
 #footer {
   background-color: black;

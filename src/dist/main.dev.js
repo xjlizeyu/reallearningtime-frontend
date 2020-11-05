@@ -27,8 +27,6 @@ _vue["default"].config.productionTip = false;
 _vue["default"].prototype.$moment = _moment["default"]; //赋值使用
 
 _moment["default"].locale("zh-cn"); //国际化，中文
-//import echarts from "echarts";
-//Vue.use(echarts);
 //引入全局css
 
 
