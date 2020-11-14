@@ -1,6 +1,6 @@
 import axios from "axios";
 import Qs from "qs";
-axios.defaults.baseURL = "http://localhost:80";
+axios.defaults.baseURL = "http://time.lenmain.cn";
 axios.defaults.withCredentials = true;
 axios.defaults.headers["Content-Type"] = "application/x-www-form-urlencoded";
 
@@ -28,6 +28,11 @@ export const startTiming = () => {
 };
 export const stopTiming = () => {
   return axios.post("/timing/stop");
+};
+
+//防止session过期
+export const timing = () => {
+  return axios.post("/timing/timing");
 };
 //-----------------------------------------
 

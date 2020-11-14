@@ -62,6 +62,9 @@ export default {
             alert("成功开始计时");
           } else {
             alert(res.data.errorMessage);
+            if (res.data.errorMessage == "未登录") {
+              this.$router.push({ path: "/" });
+            }
           }
         });
         this.currText = "停止计时";

@@ -78,7 +78,7 @@ export default {
       }
       let j = -6;
       for (; j < 0; j++) {
-        this.dates.push(this.getBeforeDate(j));
+        this.dates.push(this.getBeforeDate(-1 * j));
       }
       this.dates.push("今天");
       this.setChart();

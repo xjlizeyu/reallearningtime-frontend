@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="containBox" ref="head" id="head">
-      <timer></timer>
+      <timer ref="timer"></timer>
     </div>
     <div class="containBox" ref="statics" id="statics">
       <chart></chart>
@@ -97,6 +97,14 @@ export default {
       s.style.height = this.clientHeight + "px";
     });
     this.currPanel = 0;
+  },
+  beforeRouteLeave(to, from, next) {
+    if (this.$refs.timer.isTiming) {
+      next(false);
+      window.console("计时未停止");
+    } else {
+      next(true);
+    }
   }
 };
 </script>

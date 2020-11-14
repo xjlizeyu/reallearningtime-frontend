@@ -17,30 +17,37 @@ var _logIn = _interopRequireDefault(require("../views/logIn"));
 
 var _welcome = _interopRequireDefault(require("../views/welcome"));
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : { default: obj };
+}
 
 _vue["default"].use(_vueRouter["default"]);
 
-var routes = [{
-  path: "/",
-  name: "welcome",
-  component: _welcome["default"]
-}, {
-  path: "/home",
-  name: "home",
-  meta: {
-    requireAuth: true
+var routes = [
+  {
+    path: "/",
+    name: "welcome",
+    component: _welcome["default"]
   },
-  component: _home["default"]
-}, {
-  path: "/signin",
-  name: "signin",
-  component: _signIn["default"]
-}, {
-  path: "/login",
-  name: "login",
-  component: _logIn["default"]
-}];
+  {
+    path: "/home",
+    name: "home",
+    meta: {
+      requireAuth: true
+    },
+    component: _home["default"]
+  },
+  {
+    path: "/signin",
+    name: "signin",
+    component: _signIn["default"]
+  },
+  {
+    path: "/login",
+    name: "login",
+    component: _logIn["default"]
+  }
+];
 var router = new _vueRouter["default"]({
   mode: "hash",
   routes: routes

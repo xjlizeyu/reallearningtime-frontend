@@ -9,7 +9,9 @@ var _vue = _interopRequireDefault(require("vue"));
 
 var _vuex = _interopRequireDefault(require("vuex"));
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : { default: obj };
+}
 
 _vue["default"].use(_vuex["default"]);
 
